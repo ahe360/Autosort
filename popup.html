@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Autosort</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 10px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 8px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>Autosort</h1>
+  <form id="optionsForm">
+    <label for="images">Images Folder:</label>
+    <input type="text" id="images" name="images" placeholder="C:\\Users\\YourUsername\\Downloads\\Images">
+    <label for="videos">Videos Folder:</label>
+    <input type="text" id="videos" name="videos" placeholder="C:\\Users\\YourUsername\\Downloads\\Videos">
+    <label for="music">Music Folder:</label>
+    <input type="text" id="music" name="music" placeholder="C:\\Users\\YourUsername\\Downloads\\Music">
+    <label for="documents">Documents Folder:</label>
+    <input type="text" id="documents" name="documents" placeholder="C:\\Users\\YourUsername\\Downloads\\Documents">
+    <button type="button" onclick="saveOptions()">Save</button>
+  </form>
+  <script src="popup.js"></script>
+</body>
+</html>
