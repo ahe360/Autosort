@@ -16,7 +16,7 @@ function loadOptions() {
 // Function to save user-input values from input fields into Chrome's storage
 function saveOptions() {
     // Retrieve values from input fields; key-value pairs with the value being user's input paths
-    const images = document.getElementById('images').value
+    const images = document.getElementById('images').value;
     const videos = document.getElementById('videos').value;
     const music = document.getElementById('music').value;
     const documents = document.getElementById('documents').value;
