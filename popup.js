@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     loadOptions();
+
+    document.getElementById('saveButton').addEventListener('click', saveOptions);
 });
 
 // Function to load saved options from Chrome's storage and populate input fields
