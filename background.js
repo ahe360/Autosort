@@ -19,6 +19,7 @@ chrome.downloads.onCreated.addListener(function(downloadedItem) {
         // Checks if the end of a file name matches with any of the specified extensions 
         if (imageExtensions.some(ext => fileName.endsWith(ext))) {
             destination = items.images || '';
+            console.log('Image detected:', fileName, 'Destination', destination);
         } else if (videoExtensions.some(ext => fileName.endsWith(ext))) {
             destination = items.videos || '';
         } else if (audioExtensions.some(ext => fileName.endsWith(ext))) {
