@@ -13,7 +13,7 @@ const documentExtensions = ['.doc', '.docx', '.odt', '.pdf', '.xls', '.xlsx', '.
 // Listener for downloads
 chrome.downloads.onCreated.addListener(function(downloadedItem) {
     chrome.storage.sync.get(['images', 'videos', 'music', 'documents'], function(items) {
-        const fileName = downloadItem.filename.toLowerCase();
+        const fileName = downloadedItem.filename.toLowerCase();
         let destination = '';
 
         // Checks if the end of a file name matches with any of the specified extensions 
