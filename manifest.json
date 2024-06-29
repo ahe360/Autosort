@@ -5,7 +5,6 @@
     "description": "Automates and seamlessly organizes your downloads",
     "permissions": [
         "downloads",
-        "downloads.suggest",
         "storage"
     ],
     "background":{
