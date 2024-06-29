@@ -30,7 +30,7 @@ chrome.downloads.onCreated.addListener(function(downloadedItem) {
         if (destination) {
             const newPath = '${destination}\\${downloadedItem.filename}';
             chrome.downloads.onDeterminingFileName.addListener(function(item, suggest) {
-                if (item.id === downloadItem.id) {
+                if (item.id === downloadedItem.id) {
                     suggest({ filename: newPath });
                 }
             });
