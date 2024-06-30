@@ -8,4 +8,6 @@ A chrome extension that automates the organization of your downloaded files into
 - Easy setup and directory configuration via extension's popup interface.
 
 ## Instructions to Run
-Clone the repository and load the extension in Chrome by enabling "Developer Mode". Then click "Load unpacked" and select the directory in which you cloned the repository. To use, click on the extension icon and enter your desired folder paths for images, videos, music/audio, and documents. These must be subfolders within your **Downloads** directory. For simplicity, it is suggested you name these folders "Images, Videos, Music, Documents."You can them download files as you normally would. 
+Clone the repository and load the extension in Chrome by enabling "Developer Mode". Then click "Load unpacked" and select the directory in which you cloned the repository. To use, pre-create subfolders within your **Downloads** directory labeled "Images, Videos, Music, Documents" for simplicity. Click on the extension icon and enter the names of these subfolders, and save your options. 
+![alt text](image.png)
+You can them download files as you normally would. 
