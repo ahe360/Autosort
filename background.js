@@ -14,10 +14,20 @@ function extractFileName(url) {
     return fileNameWithParams.split('?')[0].split('&')[0];
 }
 
+function sanitizeFileName(fileName) {
+    return fileName.replace(/[<>:"/\\|?*]/g, '_'); // Replace invalid characters with underscores
+}
+
+function ensureDirectoryExists(directory) {
+    // This function is a placeholder. In a real implementation, you would need
+    // to ensure the directory exists on the file system.
+    // For example, using a native messaging host to interact with the file system.
+    return true;
+}
+
 function determineNewPath(fileName, items) {
     let destination = '';
 
-    // Check which extension end of file matches with
     if (imageExtensions.some(ext => fileName.endsWith(ext))) {
         destination = items.images || '';
         console.log('Image detected:', fileName, 'Destination:', destination);
@@ -34,15 +44,26 @@ function determineNewPath(fileName, items) {
         console.log('No matching extension found for:', fileName);
     }
 
-    return destination ? `${destination}\\${fileName}` : '';
+    if (destination) {
+        console.log(`Safe filename detected. Destination: ${destination}`);
+        const safeFileName = sanitizeFileName(fileName);
+        const fullPath = destination.replace(/\//g, '\\') + '\\' + safeFileName; // Fixing the path separator to backslashes
+        console.log(`Full path: ${fullPath}`);
+        if (ensureDirectoryExists(destination)) {
+            return fullPath;
+        } else {
+            console.error('Destination directory does not exist:', destination);
+        }
+    }
+
+    console.log('No valid destination. Using original filename:', fileName);
+    return fileName;
 }
 
-// Add the listener outside of the onCreated handler
-chrome.downloads.onDeterminingFilename.addListener(function onDeterminingFilename(item, suggest) {
-    console.log('Determining filename for item:', item);
-    console.log('downloadItem:', item);
+chrome.downloads.onDeterminingFilename.addListener(function(downloadItem, suggest) {
+    console.log('Determining filename for item:', downloadItem);
     chrome.storage.sync.get(['images', 'videos', 'music', 'documents'], function(items) {
-        const fileName = extractFileName(item.finalUrl || item.url);
+        const fileName = extractFileName(downloadItem.finalUrl || downloadItem.url);
         console.log('File name with params:', fileName);
         const cleanFileName = extractFileName(fileName);
         console.log('Clean file name:', cleanFileName);
@@ -51,13 +72,10 @@ chrome.downloads.onDeterminingFilename.addListener(function onDeterminingFilenam
             console.log('New path:', newPath);
             suggest({ filename: newPath });
             console.log('Filename suggestion:', newPath);
-            chrome.downloads.onDeterminingFilename.removeListener(onDeterminingFilename);
+        } else {
+            console.log('Using original filename:', cleanFileName);
+            suggest({ filename: cleanFileName });
         }
     });
-});
-
-// Listener for downloads
-chrome.downloads.onCreated.addListener(function(downloadItem) {
-    console.log('Download created:', downloadItem);
-    // This part is now moved to the onDeterminingFilename listener
+    return true; // Indicates that suggest will be called asynchronously
 });
