@@ -9,5 +9,5 @@ A chrome extension that automates the organization of your downloaded files into
 
 ## Instructions to Run
 Clone the repository and load the extension in Chrome by enabling "Developer Mode". Then click "Load unpacked" and select the directory in which you cloned the repository. To use, pre-create subfolders within your **Downloads** directory labeled "Images, Videos, Music, Documents" for simplicity. Click on the extension icon and enter the names of these subfolders, and save your options. <br> 
-![alt text](image.png)
-You can them download files as you normally would. 
+![alt text](image.png) <br>
+You can then download files as you normally would. 
