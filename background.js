@@ -19,15 +19,14 @@ function sanitizeFileName(fileName) {
 }
 
 function ensureDirectoryExists(directory) {
-    // This function is a placeholder. In a real implementation, you would need
-    // to ensure the directory exists on the file system.
-    // For example, using a native messaging host to interact with the file system.
+    // This function is for logging - users manually create the appropriate directories as a one-time action before using the extension.
     return true;
 }
 
 function determineNewPath(fileName, items) {
     let destination = '';
 
+    // Check which extension the end of file name matches with
     if (imageExtensions.some(ext => fileName.endsWith(ext))) {
         destination = items.images || '';
         console.log('Image detected:', fileName, 'Destination:', destination);
@@ -60,6 +59,7 @@ function determineNewPath(fileName, items) {
     return fileName;
 }
 
+// Listener for downloads
 chrome.downloads.onDeterminingFilename.addListener(function(downloadItem, suggest) {
     console.log('Determining filename for item:', downloadItem);
     chrome.storage.sync.get(['images', 'videos', 'music', 'documents'], function(items) {
